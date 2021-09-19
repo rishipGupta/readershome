@@ -13,11 +13,14 @@ export default class BookShelf extends Component {
               return (
                 <li key={book.id}>
                   <Book
+                    book={book}
                     url={book.imageLinks.thumbnail}
                     title={book.title}
                     author={book.authors.map((author) => {
                       return <div key={author}>{author}</div>;
                     })}
+                    selectShelf={this.props.selectShelf}
+                    shelfName={this.props.shelfName}
                   />
                 </li>
               );

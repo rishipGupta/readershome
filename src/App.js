@@ -30,7 +30,19 @@ class BooksApp extends React.Component {
     });
   }
 
+  selectShelf = (book, shelf) => {
+    console.log(book, shelf);
+    BooksAPI.update(book, shelf).then(() =>
+      BooksAPI.getAll().then((books) => {
+        this.setState(() => ({
+          books,
+        }));
+      })
+    );
+  };
+
   render() {
+    // console.log(this.state.books);
     return (
       <div className='app'>
         {this.state.showSearchPage ? (
@@ -67,6 +79,7 @@ class BooksApp extends React.Component {
               <div>
                 {this.shelves.map((shelf) => (
                   <BookShelf
+                    selectShelf={this.selectShelf}
                     key={shelf.id}
                     shelfName={shelf.id}
                     shelfTitle={shelf.shelfTitle}
