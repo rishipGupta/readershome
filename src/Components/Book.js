@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 
 export default class Book extends Component {
   render() {
-    const { url, title, author } = this.props;
+    let url = this.props.book.imageLinks
+      ? this.props.book.imageLinks.thumbnail
+      : '';
+
+    let authors = this.props.book.authors ? this.props.book.authors : [];
+    const { title } = this.props;
+
     return (
       <div className='book'>
         <div className='book-top'>
@@ -11,7 +17,7 @@ export default class Book extends Component {
             style={{
               width: 128,
               height: 188,
-              backgroundImage: `url(${url})`,
+              backgroundImage: `url("${url}")`,
             }}
           />
           <div className='book-shelf-changer'>
@@ -32,7 +38,11 @@ export default class Book extends Component {
           </div>
         </div>
         <div className='book-title'>{title}</div>
-        <div className='book-authors'>{author}</div>
+        <div className='book-authors'>
+          {authors.map((author) => {
+            return <div key={author}>{author}</div>;
+          })}
+        </div>
       </div>
     );
   }
