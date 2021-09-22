@@ -32,19 +32,34 @@ class BooksApp extends React.Component {
   }
 
   selectShelf = (book, shelf) => {
-    // console.log(book, shelf);
-    BooksAPI.update(book, shelf).then(() =>
-      BooksAPI.getAll().then((books) => {
-        this.setState(() => ({
-          books,
-        }));
-      })
-    );
+    BooksAPI.update(book, shelf).then((result) => {
+      console.log(result);
+      const index = this.state.books.findIndex((item) => item.id === book.id);
+      console.log(index);
+      this.setState(
+        (state) => {
+          let updatedBooks;
+          if (index !== -1) {
+            updatedBooks = state.books.map((book, i) => {
+              if (i === index) {
+                book.shelf = shelf;
+              }
+              return book;
+            });
+          } else {
+            book.shelf = shelf;
+            updatedBooks = [...state.books, book];
+          }
+          return { books: updatedBooks };
+        },
+        () => {
+          console.log('updated state: ', this.state.books);
+        }
+      );
+    });
   };
 
   render() {
-    // console.log(this.state.books);
-
     return (
       <div className='app'>
         <Route
