@@ -1,8 +1,8 @@
-# MyReads Project
+# Readers Home Project
 
 ## Introduction
 
-MyReads project is an interactive bookshelf app built using React. It allows users to select and categorize books into shelves that user has read, is currently reading or want to read. It offers search functionality where in user can search either book name or author's name and further add it to desired shelf.
+Readers Home project is an interactive bookshelf app built using React. It allows users to select and categorize books into shelves that user has read, is currently reading or want to read. It offers search functionality where in user can search either book name or author's name and further add it to desired shelf.
 
 ## Get Started
 
